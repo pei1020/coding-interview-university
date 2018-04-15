@@ -585,6 +585,24 @@ Write code on a whiteboard or paper, not a computer. Test with some sample input
     - [ ] Doubly-linked List
         - [Description (video)](https://www.coursera.org/learn/data-structures/lecture/jpGKD/doubly-linked-lists)
         - No need to implement
+- ### List (Java)
+    - ArrayList
+        - Dynamically resizing array (double size if full and takes O(n) but amortize to O(1) due to rareness) 
+    - LinkedList
+    - Vector
+    - Stack
+    - Constructor 
+        - `List<Type> = new Form<Type>()`
+    - Method
+        - [] add(int x): add x subseqeuntly
+        - [] add(int x, int y): add y at index x
+        - [] add(int x, Collection y): add y at index x
+        - [] remove(int x): remove x and do shifting
+        - [] get(int x): get the element at index x
+        - [] set(int x, int y): replace index x element with y and returns the replaced element 
+        - [] indexOf(Object x): this method returns first occurrence of given element or -1 if element is not present in list.
+        - [] lastIndexOf(Object x): this method returns the last occurrence of given element or -1 if element is not present in list.
+        - [] subList(int fromIndex, int toIndex): return a sublist within the range
 
 - ### Stack
     - [ ] [Stacks (video)](https://www.coursera.org/learn/data-structures/lecture/UdKzQ/stacks)
@@ -611,6 +629,15 @@ Write code on a whiteboard or paper, not a computer. Test with some sample input
         - enqueue: O(1) (amortized, linked list and array [probing])
         - dequeue: O(1) (linked list and array)
         - empty: O(1) (linked list and array)
+    - [] Java Interface:
+        - add():
+        - peek():
+        - element():
+        - remove():
+        - poll():
+        - size():
+        - isEmpty():
+        - contains():
 
 - ### Hash table
     - [ ] Videos:
@@ -641,6 +668,13 @@ Write code on a whiteboard or paper, not a computer. Test with some sample input
         - remove(key)
 
 ## More Knowledge
+- ### Strings
+    - Methods
+        - charAt(int i): character at index i
+            - Character.toString(char c): char to string
+        - substring(int start, int end): substring from start (inclusive) until end (exclusive)
+        - substring(int i): substring starting from i
+        - indexOf(String s): returns index of substring in the string
 
 - ### Binary search
     - [ ] [Binary Search (video)](https://www.youtube.com/watch?v=D5SrAga1pno)
@@ -698,6 +732,51 @@ Write code on a whiteboard or paper, not a computer. Test with some sample input
                 best: O(log n) - avg. height of tree
                 worst: O(n)
         - inorder (DFS: left, self, right)
+            - Recursion: 
+                - Time Complexity: T(n) = 2 * T(n/2) + 1 --> O(n)
+                - Space Complexity: worst - O(n), avg - O(logn)
+            ```
+            public List < Integer > inorderTraversal(TreeNode root) {
+                List < Integer > res = new ArrayList < > ();
+                helper(root, res);
+                return res;
+            }
+
+            public void helper(TreeNode root, List < Integer > res) {
+                if (root != null) {
+                    if (root.left != null) {
+                        helper(root.left, res);
+                    }
+                    res.add(root.val);
+                    if (root.right != null) {
+                        helper(root.right, res);
+                    }
+                }
+            }
+            ```
+            - Iterative
+                - Time Com: O(n)
+                - Space Com: O(n)
+            - Morris
+                - Time Com: O(n)
+                - Space Com: O(n)
+            ```
+            Step 1: Initialize current as root
+
+            Step 2: While current is not NULL,
+
+            If current does not have left child
+
+                a. Add current’s value
+
+                b. Go to the right, i.e., current = current.right
+
+            Else // Make the left child the root, kinda flip the tree to the right
+
+                a. In current's left subtree, make current the right child of the rightmost node
+
+                b. Go to this left child, i.e., current = current.left
+            ```
         - postorder (DFS: left, right, self)
         - preorder (DFS: self, left, right)
 
